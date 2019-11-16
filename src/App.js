@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios'
+import blogService from './services/blogs'
 import logo from './logo.svg';
 import './App.css';
 
@@ -21,15 +22,14 @@ function App() {
   const [blogs, setBlogs] = useState(null)
   const [token, setToken] =useState(null)
   useEffect(() =>{
-    const burl = '/api/blogs'
-    axios.get(burl).then(response =>{setBlogs(response.data)})
+    setBlogs(blogService.getAll())
   },[])
   const login = async () =>{
     console.log("called from login")
     console.log({username},'  ',{password})
     const login = await axios.post(baseurl,{username,password})
     console.log(login.data.token)
-    setToken(login.data.token)
+    setToken('bearer ',login.data.token)
   }
   const handleUserNameChange = (event) =>{
     console.log("username changed")
