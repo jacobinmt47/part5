@@ -14,12 +14,9 @@ function App() {
   const [blog, setBlog] = useState(null)
   const [token, setToken] =useState(null)
   useEffect(() =>{
-      const b = blogService.getAll()
-      console.log(b)
-      setBlog(b)
+   blogService.getAll().then(i =>setBlog(i))
   },[])
   const login = async () =>{
-
     console.log("called from login")
     console.log({username},'  ',{password})
     const login = await axios.post(baseurl,{username,password})

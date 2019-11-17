@@ -1,9 +1,9 @@
 import React from 'react'
 const Blog = ({ blog }) => {
- console.log(blog)
+ const b = blog.map(i => <li key={i.id}><a href={i.url}>{i.title}</a></li>)
  return(
     <div>
-    {blog.title} {blog.author}
+    {b}
   </div>
 )
 }
