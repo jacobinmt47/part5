@@ -3,9 +3,7 @@ const baseUrl = '/api/blogs'
 
 const getAll = () => {
   const request = axios.get(baseUrl)
-  const r = request.then(response => response.data)
-  console.log(r)
-  return r 
+  return request.then(response => response.data) 
 }
 
 
