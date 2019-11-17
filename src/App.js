@@ -23,8 +23,8 @@ function App() {
   const [blogs, setBlogs] = useState(null)
   const [token, setToken] =useState(null)
   useEffect(() =>{
-    setBlogs(blogService.getAll())
-  },[])
+      setBlogs(blogService.getAll())
+  },[blogs])
   const login = async () =>{
     console.log("called from login")
     console.log({username},'  ',{password})
@@ -56,7 +56,7 @@ function App() {
       <div>
         <Header logo={logo} />
         welcome {username}<br />
-        <Blogs blogs = {blogs} />
+        <Blogs blogs={blogs} />
       </div>
     );
   }
