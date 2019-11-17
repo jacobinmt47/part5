@@ -54,6 +54,7 @@ function App() {
   } else{
     return (
       <div>
+        <Header logo={logo} />
         welcome {username}<br />
         <Blogs blogs = {blogs} />
       </div>
