@@ -26,6 +26,7 @@ function App() {
       setBlogs(blogService.getAll())
   },[blogs])
   const login = async () =>{
+
     console.log("called from login")
     console.log({username},'  ',{password})
     const login = await axios.post(baseurl,{username,password})
@@ -40,6 +41,7 @@ function App() {
     console.log("password changed")
     setPassword(event.target.value)
   }
+  
   if(token === null){
   return (
     <div className="App">
