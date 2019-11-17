@@ -12,24 +12,31 @@ function App() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [blog, setBlog] = useState(null)
-  const [token, setToken] =useState(null)
+  const [token, setToken] = useState(null)
   useEffect(() =>{
    blogService.getAll().then(i =>setBlog(i))
   },[])
   useEffect(() =>{
     const tokenJSON = window.localStorage.getItem('login')
-    if(tokenJSON){
-      const token = JSON.parse(tokenJSON)
-      setToken(token)
+    const user = window.localStorage.getItem('user')
+    const token = JSON.parse(tokenJSON)
+    console.log(token)
+    if(token !== null){
+      console.log('called from useEffect',token)
+      setUsername(user)
+     // setToken(token)
     } 
   },[])
   const login = async () =>{
     console.log("called from login")
     console.log({username},'  ',{password})
     const login = await axios.post(baseurl,{username,password})
-    console.log(login.data.token)
-    setToken('bearer ',login.data.token)
-    window.localStorage.setItem('login',JSON.stringify(token))
+    const tk = login.data.token
+    console.log(tk)
+    setToken('bearer ',tk)
+    window.localStorage.setItem('login',JSON.stringify(tk))
+    window.localStorage.setItem('user',username)
+    console.log('called from login ',JSON.stringify(tk))
   }
   const handleUserNameChange = (event) =>{
     console.log("username changed")
