@@ -37,6 +37,9 @@ function App() {
     window.localStorage.removeItem('login')
     setToken(null)
   }
+  const handleAddBlog = (event) => {
+    console.log('add blog')
+  }
   
   if(token === null){
   return (
@@ -54,6 +57,12 @@ function App() {
       <div>
         <Header logo={logo} />
         welcome {username} <button onClick={handleLogout}>logout</button> <br/>
+        <h2>Add new blog</h2>
+        title: <input type="text" /> <br/>
+        author:<input type="text" /> <br/>
+        url:<input type="text" /> <br />
+        <button onClick={handleAddBlog}>add blog </button>
+        <br />
         <Blogs blog={blog} />
       </div>
     );
