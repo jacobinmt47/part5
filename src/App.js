@@ -14,7 +14,9 @@ function App() {
   const [blog, setBlog] = useState(null)
   const [token, setToken] =useState(null)
   useEffect(() =>{
-      setBlog(blogService.getAll())
+      const b = blogService.getAll()
+      console.log(b)
+      setBlog(b)
   },[])
   const login = async () =>{
 
