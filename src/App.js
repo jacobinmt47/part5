@@ -16,6 +16,13 @@ function App() {
   useEffect(() =>{
    blogService.getAll().then(i =>setBlog(i))
   },[])
+  useEffect(() =>{
+    const tokenJSON = window.localStorage.getItem('login')
+    if(tokenJSON){
+      const token = JSON.parse(tokenJSON)
+      setToken(token)
+    } 
+  },[])
   const login = async () =>{
     console.log("called from login")
     console.log({username},'  ',{password})
