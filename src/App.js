@@ -51,7 +51,7 @@ function App() {
     </div>
     
   );
-  } else{
+  } else {
     return (
       <div>
         <Header logo={logo} />
