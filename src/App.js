@@ -24,7 +24,7 @@ function App() {
   const [token, setToken] =useState(null)
   useEffect(() =>{
       setBlogs(blogService.getAll())
-  },[blogs])
+  },[])
   const login = async () =>{
 
     console.log("called from login")
