@@ -11,10 +11,10 @@ const baseurl = '/api/login'
 function App() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [blogs, setBlogs] = useState(null)
+  const [blog, setBlog] = useState(null)
   const [token, setToken] =useState(null)
   useEffect(() =>{
-      setBlogs(blogService.getAll())
+      setBlog(blogService.getAll())
   },[])
   const login = async () =>{
 
@@ -49,7 +49,7 @@ function App() {
       <div>
         <Header logo={logo} />
         welcome {username}<br />
-        <Blogs blog={blogs} />
+        <Blogs blog={blog} />
       </div>
     );
   }
