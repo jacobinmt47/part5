@@ -22,6 +22,7 @@ function App() {
     const login = await axios.post(baseurl,{username,password})
     console.log(login.data.token)
     setToken('bearer ',login.data.token)
+    window.localStorage.setItem('login',JSON.stringify(token))
   }
   const handleUserNameChange = (event) =>{
     console.log("username changed")
@@ -30,6 +31,10 @@ function App() {
   const handlePasswordChange = (event) =>{
     console.log("password changed")
     setPassword(event.target.value)
+  }
+  const handleLogout = (event) =>{
+    console.log("logout")
+    window.localStorage.removeItem('login')
   }
   
   if(token === null){
@@ -47,7 +52,7 @@ function App() {
     return (
       <div>
         <Header logo={logo} />
-        welcome {username}<br />
+        welcome {username} <button onClick={handleLogout}>logout</button> <br/>
         <Blogs blog={blog} />
       </div>
     );
