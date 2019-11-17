@@ -35,6 +35,7 @@ function App() {
   const handleLogout = (event) =>{
     console.log("logout")
     window.localStorage.removeItem('login')
+    setToken(null)
   }
   
   if(token === null){
