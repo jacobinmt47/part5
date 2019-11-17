@@ -1,21 +1,12 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios'
 import blogService from './services/blogs'
-import logo from './logo.svg';
+import logo from './logo.svg'
 import Header from './components/Header'
+import Blogs from './components/Blog'
 import './App.css';
 
 const baseurl = '/api/login'
-
-const Blogs =  (props) =>{
-  const b = props.blogs
-  const c = b.map(p =><li key = {p.id}><a href ={p.url}>{p.title}</a></li>)
-  return(
-    <>
-      {c}
-    </>
-  )
-}
 
 function App() {
   const [username, setUsername] = useState('')
@@ -58,7 +49,7 @@ function App() {
       <div>
         <Header logo={logo} />
         welcome {username}<br />
-        <Blogs blogs={blogs} />
+        <Blogs blog={blogs} />
       </div>
     );
   }
