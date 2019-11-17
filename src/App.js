@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import axios from 'axios'
 import blogService from './services/blogs'
 import logo from './logo.svg';
+import Header from './components/Header'
 import './App.css';
 
 const baseurl = '/api/login'
@@ -42,12 +43,8 @@ function App() {
   if(token === null){
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-         login to application
-        </p>
-      </header>
+      <Header logo={logo} />
+      <h3>log into application</h3>
       username:<input type="text" onChange={handleUserNameChange} /><br />
       password:<input type="text" onChange={handlePasswordChange}/><br />
       <button onClick={() =>login()}>login</button>
