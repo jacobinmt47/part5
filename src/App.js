@@ -15,16 +15,17 @@ function App() {
   const [token, setToken] = useState(null)
   useEffect(() =>{
    blogService.getAll().then(i =>setBlog(i))
+   console.log('getall called')
   },[])
   useEffect(() =>{
     const tokenJSON = window.localStorage.getItem('login')
     const user = window.localStorage.getItem('user')
     const token = JSON.parse(tokenJSON)
-    console.log(token)
+    //console.log(token)
     if(token !== null){
       console.log('called from useEffect',token)
       setUsername(user)
-     // setToken(token)
+      setToken('bearer ',token)
     } 
   },[])
   const login = async () =>{
@@ -55,7 +56,7 @@ function App() {
     console.log('add blog')
   }
   
-  if(token === null){
+  if((token === null)||(blog === null)){
   return (
     <div className="App">
       <Header logo={logo} />
