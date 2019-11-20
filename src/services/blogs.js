@@ -15,8 +15,8 @@ const addBlog = (author,title,url,token) =>{
     title:title,
     url:url
   }
-  const config ={
-    Headers:{Authorization:tk}
+  const config = {
+    headers:{Authorization:tk}
   }
   const response = axios.post(baseUrl,obj,config)
   return response.then(r => r.data)
