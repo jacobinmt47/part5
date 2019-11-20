@@ -11,6 +11,9 @@ const baseurl = '/api/login'
 function App() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [title, setTitle] = useState('')
+  const [url, setUrl] = useState('')
+  const [author, setAuthor] = useState('')
   const [blog, setBlog] = useState(null)
   const [token, setToken] = useState(null)
   useEffect(() =>{
@@ -25,7 +28,7 @@ function App() {
     if(token !== null){
       console.log('called from useEffect',token)
       setUsername(user)
-      setToken('bearer ',token)
+      setToken( token)
     } 
   },[])
   const login = async () =>{
@@ -34,7 +37,7 @@ function App() {
     const login = await axios.post(baseurl,{username,password})
     const tk = login.data.token
     console.log(tk)
-    setToken('bearer ',tk)
+    setToken(tk)
     window.localStorage.setItem('login',JSON.stringify(tk))
     window.localStorage.setItem('user',username)
     console.log('called from login ',JSON.stringify(tk))
@@ -54,7 +57,19 @@ function App() {
   }
   const handleAddBlog = (event) => {
     console.log('add blog')
+    blogService.addBlog(author,title,url,token)
   }
+
+  const handleAuthorChanged= (event) => {
+    setAuthor(event.target.value)
+  }
+  const handleUrlChanged = (event) => {
+    setUrl(event.target.value)
+  }
+  const handleTitleChanged = (event) => {
+    setTitle(event.target.value)
+  }
+
   
   if((token === null)||(blog === null)){
   return (
@@ -73,9 +88,9 @@ function App() {
         <Header logo={logo} />
         welcome {username} <button onClick={handleLogout}>logout</button> <br/>
         <h2>Add new blog</h2>
-        title: <input type="text" /> <br/>
-        author:<input type="text" /> <br/>
-        url:<input type="text" /> <br />
+        title: <input type="text" onChange={handleTitleChanged} /> <br/>
+        author:<input type="text" onChange={handleAuthorChanged}/> <br/>
+        url:<input type="text"    onChange={handleUrlChanged} /> <br />
         <button onClick={handleAddBlog}>add blog </button>
         <br />
         <Blogs blog={blog} />
