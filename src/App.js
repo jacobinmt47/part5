@@ -5,6 +5,7 @@ import logo from './logo.svg'
 import Header from './components/Header'
 import Blogs from './components/Blog'
 import Error from './components/Error'
+import Success from './components/Success'
 import './App.css';
 
 const baseurl = '/api/login'
@@ -18,6 +19,8 @@ function App() {
   const [blog, setBlog] = useState(null)
   const [token, setToken] = useState(null)
   const [error, setError] = useState(null)
+  const [successMsg, setSuccessMsg] = useState(null)
+
   useEffect(() =>{
    blogService.getAll().then(i =>setBlog(i))
    console.log('getall called')
@@ -64,7 +67,10 @@ function App() {
   }
   const handleAddBlog = (event) => {
     console.log('add blog')
-    blogService.addBlog(author,title,url,token)
+    const retBlog = blogService.addBlog(author,title,url,token)
+    retBlog.then(r =>setSuccessMsg('adding a blog worked r.title'))
+    retBlog.catch(error =>console.log(error))
+    
   }
 
   const handleAuthorChanged= (event) => {
@@ -94,6 +100,7 @@ function App() {
     return (
       <div>
         <Header logo={logo} />
+        <Success msg={successMsg} />
         welcome {username} <button onClick={handleLogout}>logout</button> <br/>
         <h2>Add new blog</h2>
         title: <input type="text" onChange={handleTitleChanged} /> <br/>

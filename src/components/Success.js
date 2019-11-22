@@ -6,9 +6,10 @@ const Success = ({msg}) =>{
     }
     else{
         return(
-            <div className = 'success' />
+            <div className = 'success' >
               {msg}
             </div>
         )
     }
 }
+export default Success
