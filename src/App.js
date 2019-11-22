@@ -36,18 +36,17 @@ function App() {
   const login = async () =>{
     console.log("called from login")
     console.log({username},'  ',{password})
+    try{
     const login = await axios.post(baseurl,{username,password})
     const tk = login.data.token
     console.log(tk)
-    
-    if (tk === null){
-      setError('login failed')
-    }
-    else{
       setToken(tk)
       window.localStorage.setItem('login',JSON.stringify(tk))
       window.localStorage.setItem('user',username)
       console.log('called from login ',JSON.stringify(tk))
+    }
+    catch (error){
+      setError('login failed')
     }
   }
   const handleUserNameChange = (event) =>{
