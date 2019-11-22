@@ -4,6 +4,7 @@ import blogService from './services/blogs'
 import logo from './logo.svg'
 import Header from './components/Header'
 import Blogs from './components/Blog'
+import Error from './components/Error'
 import './App.css';
 
 const baseurl = '/api/login'
@@ -16,6 +17,7 @@ function App() {
   const [author, setAuthor] = useState('')
   const [blog, setBlog] = useState(null)
   const [token, setToken] = useState(null)
+  const [error, setError] = useState(null)
   useEffect(() =>{
    blogService.getAll().then(i =>setBlog(i))
    console.log('getall called')
@@ -37,10 +39,16 @@ function App() {
     const login = await axios.post(baseurl,{username,password})
     const tk = login.data.token
     console.log(tk)
-    setToken(tk)
-    window.localStorage.setItem('login',JSON.stringify(tk))
-    window.localStorage.setItem('user',username)
-    console.log('called from login ',JSON.stringify(tk))
+    
+    if (tk === null){
+      setError('login failed')
+    }
+    else{
+      setToken(tk)
+      window.localStorage.setItem('login',JSON.stringify(tk))
+      window.localStorage.setItem('user',username)
+      console.log('called from login ',JSON.stringify(tk))
+    }
   }
   const handleUserNameChange = (event) =>{
     console.log("username changed")
@@ -75,6 +83,7 @@ function App() {
   return (
     <div className="App">
       <Header logo={logo} />
+      <Error msg={error} />
       <h3>log into application</h3>
       username:<input type="text" onChange={handleUserNameChange} /><br />
       password:<input type="text" onChange={handlePasswordChange}/><br />

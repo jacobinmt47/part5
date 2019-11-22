@@ -1,0 +1,10 @@
+.error {
+    color:red;
+    padding:5px;
+    font-size: 15px;
+}
+.ok {
+    color:green;
+    padding:5px;
+    font-size: 15px;
+}
