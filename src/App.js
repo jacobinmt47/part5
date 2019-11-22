@@ -68,7 +68,10 @@ function App() {
   const handleAddBlog = (event) => {
     console.log('add blog')
     const retBlog = blogService.addBlog(author,title,url,token)
-    retBlog.then(r =>setSuccessMsg('adding a blog worked r.title'))
+    retBlog.then(r =>
+      {setSuccessMsg(`adding ${r.title} blog worked `)
+       console.log(r)
+      })
     retBlog.catch(error =>console.log(error))
     
   }
