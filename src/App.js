@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Blogs from './components/Blog'
 import Error from './components/Error'
 import Success from './components/Success'
+import Toggleable from './components/Toggleable'
 import './App.css';
 
 const baseurl = '/api/login'
@@ -105,11 +106,13 @@ function App() {
         <Header logo={logo} />
         <Success msg={successMsg} />
         welcome {username} <button onClick={handleLogout}>logout</button> <br/>
-        <h2>Add new blog</h2>
-        title: <input type="text" onChange={handleTitleChanged} /> <br/>
-        author:<input type="text" onChange={handleAuthorChanged}/> <br/>
-        url:<input type="text"    onChange={handleUrlChanged} /> <br />
-        <button onClick={handleAddBlog}>add blog </button>
+        <Toggleable>
+          <h2>Add new blog</h2>
+          title: <input type="text" onChange={handleTitleChanged} /> <br/>
+          author:<input type="text" onChange={handleAuthorChanged}/> <br/>
+          url:<input type="text"    onChange={handleUrlChanged} /> <br />
+          <button onClick={handleAddBlog}>add blog </button>
+        </Toggleable>
         <br />
         <Blogs blog={blog} />
       </div>
