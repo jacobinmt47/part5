@@ -106,7 +106,7 @@ function App() {
         <Header logo={logo} />
         <Success msg={successMsg} />
         welcome {username} <button onClick={handleLogout}>logout</button> <br/>
-        <Toggleable>
+        <Toggleable buttonLabel='add Blog '>
           <h2>Add new blog</h2>
           title: <input type="text" onChange={handleTitleChanged} /> <br/>
           author:<input type="text" onChange={handleAuthorChanged}/> <br/>
