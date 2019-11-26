@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState, useImperativeHandle}from 'react'
 
 const BlogEntry = React.forwardRef((props,ref) =>{
 
