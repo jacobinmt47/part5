@@ -6,14 +6,21 @@ const BlogEntry = React.forwardRef((props,ref) =>{
     const hideWhenVisable = {display : visable ? 'none' : ''}
     const showWhenVisalbe = {display : visable ? '' : 'none'}
 
-    const plusLikes = () =>{
+    const plusLikes = () => {
         blogs.increaseLikes(props.author,props.title,props.id,props.likes,props.url)
+    }
+    const deleteBlog = () => {
+        let d = window.confirm(`delete blog ${props.title}`)
+        if(d){
+            console.log('delete blog')
+            blogs.deleteBlog(props.id)
+        }
     }
   
     const ToggleVisibility = () => {
         setVisable(!visable)
     }
-    useImperativeHandle(ref,() =>{
+    useImperativeHandle(ref,() => {
         return ToggleVisibility
     })
 
@@ -28,6 +35,7 @@ const BlogEntry = React.forwardRef((props,ref) =>{
                 likes: {props.likes} <button onClick={plusLikes}> increase likes</button><br />
                 author: {props.author} <br />
                 id: {props.id} <br />
+                <button onClick = {deleteBlog}>delete entry</button>
                 <button onClick = {ToggleVisibility}>contract</button>
             </div>
         </div>

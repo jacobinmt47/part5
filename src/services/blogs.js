@@ -30,7 +30,6 @@ const increaseLikes = (author,title,id,likes,url,token) =>{
   }
   else {
     l = likes + 1
-    
   }
  
   const obj ={
@@ -40,5 +39,9 @@ const increaseLikes = (author,title,id,likes,url,token) =>{
   .then(r => console.log(r))
 }
 
-
-export default { getAll, addBlog, increaseLikes }
+const deleteBlog = (id) => {
+  axios.delete(baseUrl+'/'+id)
+  .then(r => console.log(r))
+  .catch(error => console.log(error))
+}
+export default { getAll, addBlog, increaseLikes, deleteBlog }
