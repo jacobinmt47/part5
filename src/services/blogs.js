@@ -22,5 +22,9 @@ const addBlog = (author,title,url,token) =>{
   return response.then(r => r.data)
 }
 
+const increaseLikes = (author,title,id,likes,url,token) =>{
+  console.log(author,title,id,likes,url)
+}
 
-export default { getAll, addBlog }
+
+export default { getAll, addBlog, increaseLikes }

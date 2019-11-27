@@ -1,9 +1,14 @@
 import React,{useState, useImperativeHandle}from 'react'
+import blogs from '../services/blogs'
 
 const BlogEntry = React.forwardRef((props,ref) =>{
     const [visable, setVisable] = useState(false)
     const hideWhenVisable = {display : visable ? 'none' : ''}
     const showWhenVisalbe = {display : visable ? '' : 'none'}
+
+    const plusLikes = () =>{
+        blogs.increaseLikes(props.author,props.title,props.id,props.url,props.token)
+    }
   
     const ToggleVisibility = () => {
         setVisable(!visable)
@@ -20,7 +25,7 @@ const BlogEntry = React.forwardRef((props,ref) =>{
             </div>
             <div style = {showWhenVisalbe} >
                 <a href = {props.url}>{props.title}</a> <br />
-                likes: {props.likes} <br />
+                likes: {props.likes} <button onClick={plusLikes}> increase likes</button><br />
                 author: {props.author} <br />
                 id: {props.id} <br />
                 <button onClick = {ToggleVisibility}>contract</button>
