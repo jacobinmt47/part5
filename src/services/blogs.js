@@ -24,6 +24,20 @@ const addBlog = (author,title,url,token) =>{
 
 const increaseLikes = (author,title,id,likes,url,token) =>{
   console.log(author,title,id,likes,url)
+  let l = likes 
+  if (likes === null){
+    l = 1
+  }
+  else {
+    l = likes + 1
+    
+  }
+ 
+  const obj ={
+    likes:l
+  }
+  axios.put(baseUrl+'/'+id,obj)
+  .then(r => console.log(r))
 }
 
 

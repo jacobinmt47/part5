@@ -7,7 +7,7 @@ const BlogEntry = React.forwardRef((props,ref) =>{
     const showWhenVisalbe = {display : visable ? '' : 'none'}
 
     const plusLikes = () =>{
-        blogs.increaseLikes(props.author,props.title,props.id,props.url)
+        blogs.increaseLikes(props.author,props.title,props.id,props.likes,props.url)
     }
   
     const ToggleVisibility = () => {
