@@ -21,6 +21,8 @@ const BlogEntry = React.forwardRef((props,ref) =>{
             <div style = {showWhenVisalbe} >
                 <a href = {props.url}>{props.title}</a> <br />
                 likes: {props.likes} <br />
+                author: {props.author} <br />
+                id: {props.id} <br />
                 <button onClick = {ToggleVisibility}>contract</button>
             </div>
         </div>
