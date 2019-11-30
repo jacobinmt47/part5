@@ -40,9 +40,10 @@ test('button',() => {
   const component =  render(
     <SimpleBlog blog={blog} onClick={mockHandler} />
   )
-  const button = component.container.querySelector('button')
+  const button = component.getByText('like')
   fireEvent.click(button)
   fireEvent.click(button)
+  expect(mockHandler.mock.calls.length).toBe(2)
   const l = component.container.querySelector('.likes')
-  expect(l).toHaveTextContent('12')
+  expect(l).toHaveTextContent('10') // logic to increase like count not implemented
 })
