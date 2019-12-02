@@ -16,7 +16,8 @@ const baseurl = '/api/login'
 function App() {
   const [username,setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [title, setTitle] = useState('')
+  //const [title, setTitle] = useState('')
+  const title = useField('text')
   const [url, setUrl] = useState('')
   const [author, setAuthor] = useState('')
   const [blog, setBlog] = useState(null)
@@ -110,7 +111,7 @@ function App() {
         welcome {username} <button onClick={handleLogout}>logout</button> <br/>
         <Toggleable buttonLabel='add Blog '>
           <h2>Add new blog</h2>
-          title: <input type="text" onChange={handleTitleChanged} /> <br/>
+          title: <input type={title.type} value={title.value} onChange={title.onChange} /> <br/>
           author:<input type="text" onChange={handleAuthorChanged}/> <br/>
           url:<input type="text"    onChange={handleUrlChanged} /> <br />
           <button onClick={handleAddBlog}>add blog </button>
