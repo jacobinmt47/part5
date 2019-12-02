@@ -14,7 +14,7 @@ import './App.css';
 const baseurl = '/api/login'
 
 function App() {
-  const [username, setUsername] = useField('text')
+  const [username,setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [title, setTitle] = useState('')
   const [url, setUrl] = useState('')
@@ -35,7 +35,7 @@ function App() {
     //console.log(token)
     if(token !== null){
       console.log('called from useEffect',token)
-      setUsername(user)
+      username.setValue(user)
       setToken( token)
     } 
   },[])
@@ -73,9 +73,9 @@ function App() {
     const retBlog = blogService.addBlog(author,title,url,token)
     retBlog.then(r =>
       {setSuccessMsg(`adding ${r.title} blog worked `)
-       console.log(r)
+      console.log(r)
       })
-    retBlog.catch(error =>console.log(error))
+    retBlog.catch(error => console.log(error))
     
   }
 
@@ -96,7 +96,7 @@ function App() {
       <Header logo={logo} />
       <Error msg={error} />
       <h3>log into application</h3>
-      username:<input type={username.type } value = {username.value} onChange = {username.onChange} /><br />
+      username:<input type='text'  onChange = {handleUserNameChange} /><br />
       password:<input type="text" onChange={handlePasswordChange}/><br />
       <button onClick={() =>login()}>login</button>
     </div>
