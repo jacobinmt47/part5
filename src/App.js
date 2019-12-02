@@ -7,13 +7,14 @@ import Blogs from './components/Blog'
 import Error from './components/Error'
 import Success from './components/Success'
 import Toggleable from './components/Toggleable'
+import {useField} from './hooks'
 
 import './App.css';
 
 const baseurl = '/api/login'
 
 function App() {
-  const [username, setUsername] = useState('')
+  const [username, setUsername] = useField('text')
   const [password, setPassword] = useState('')
   const [title, setTitle] = useState('')
   const [url, setUrl] = useState('')
@@ -95,7 +96,7 @@ function App() {
       <Header logo={logo} />
       <Error msg={error} />
       <h3>log into application</h3>
-      username:<input type="text" onChange={handleUserNameChange} /><br />
+      username:<input type={username.type } value = {username.value} onChange = {username.onChange} /><br />
       password:<input type="text" onChange={handlePasswordChange}/><br />
       <button onClick={() =>login()}>login</button>
     </div>
