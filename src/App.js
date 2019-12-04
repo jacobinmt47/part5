@@ -102,9 +102,9 @@ function App() {
         welcome {username} <button onClick={handleLogout}>logout</button> <br/>
         <Toggleable buttonLabel='add Blog '>
           <h2>Add new blog</h2>
-          title: <input type={title.type} value={title.value} onChange={title.onChange} /> <br/>
-          author:<input type={author.type} value={author.value} onChange={author.onChange}/> <br/>
-          url:<input type={url.type} value={url.value} onChange={url.onChange} /> <br />
+          title: <input {...title} /> <br/>
+          author:<input {...author}/> <br/>
+          url:<input {...url} /> <br />
           <button onClick={handleAddBlog}>add blog </button>
         </Toggleable>
         <br />
